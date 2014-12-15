@@ -83,7 +83,7 @@
         var index = tempLC.indexOf('i wouldn\'t mind');
         var butI = butI.substring(index, butI.length);  
 
-        $("#4").append(butI);
+        $("#3").append(butI);
           
       });
     });
@@ -97,10 +97,11 @@
       p {
         font-family: 'Courgette', cursive;
         font-size: 3em;
-        color: black;
+        color: #0033CC;
         text-align: center;
         margin: auto;
-        margin: 5% 10% 5% 10%;
+        margin: 0% 10% 0% 10%;
+        line-height: 150%;
       }
 
       p:first-child {
@@ -116,10 +117,12 @@
 
   <body>
 
-    <p id="1">I can't believe I'm <selector>in</selector></p>
-    <p id="2"></p>
-    <p id="3">but</p>
-    <p id="4"></p>
+    <p>I can't believe I'm 
+      <selector id="1">in</selector>
+      <selector id="2"></selector>
+      but
+      <selector id="3"></selector>
+    </p>
 
   </body>
 
