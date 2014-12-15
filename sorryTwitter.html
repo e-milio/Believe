@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <link href='http://fonts.googleapis.com/css?family=Courgette&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+     <script>
+
+     $(document).ready(function(){
+      
+      $.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/believe", function(response){
+
+        console.log(response);
+
+        var sorry_location;
+
+        for(i in response.statuses) {
+
+          var location = response.statuses[i].user.location;
+
+          if(location != '') {
+            console.log('found a location, lets go with it', location)
+            sorry_location = location;
+            break;
+          } else if(i == response.statuses.length && location == '') {
+            console.log('None of these have a location');
+          } else {
+            console.log('no location found... moving to the next instagram')
+          }
+        }
+
+        $("h2").html(sorry_location);
+
+        console.log(sorry_location);
+          
+      });
+      
+      $.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/\"I_wouldn't_mind\"", function(response){
+
+        var butI = response.statuses[1].text;
+        var tempLC = butI.toLowerCase(); //temporarily all to lower case
+        var index = tempLC.indexOf('i wouldn\'t mind');
+        var butI = butI.substring(index, butI.length);  
+
+        $("h4").append(butI);
+          
+      });
+    });
+
+    </script>
+
+  </head>
+
+    <style>
+
+      h1 {
+        font-family: 'Courgette', cursive;
+        font-size: 3em;
+        color: black;
+        text-align: center;
+        margin: auto;
+        margin: 30%;
+      }
+
+      h2 {
+        font-family: 'Courgette', cursive;
+        font-size: 3em;
+        color: blue;
+        text-align: center;
+        margin: auto;
+        margin: -25% 10% 0% 10%;
+      }
+      h3 {
+        font-family: 'Courgette', cursive;
+        font-size: 3em;
+        color: black;
+        text-align: center;
+        margin: auto;
+        margin: 5% 10% 0% 10%;
+      }
+      h4 {
+        font-family: 'Courgette', cursive;
+        font-size: 3em;
+        color: red;
+        text-align: center;
+        margin: auto;
+        margin: 5% 10% 0% 10%;
+      }
+
+      body {
+        background-image: ;
+      }
+
+    </style>
+
+  <body>
+
+    <h1>I can't believe I'm in</h1>
+    <h2></h2>
+    <h3>but</h3>
+    <h4></h4>
+
+  </body>
+
+</html>
