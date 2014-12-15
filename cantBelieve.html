@@ -10,32 +10,71 @@
 
      $(document).ready(function(){
       
-      $.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/believe", function(response){
+      $.getJSON("http://cooper-union-instagram-proxy.herokuapp.com/search/tag/believe?count=100", function(response){
 
         console.log(response);
 
-        var sorry_location;
+        var believe_location;
 
-        for(i in response.statuses) {
+        for(i in response) {
 
-          var location = response.statuses[i].user.location;
+          var location = response[i].location;
 
-          if(location != '') {
-            console.log('found a location, lets go with it', location)
-            sorry_location = location;
-            break;
-          } else if(i == response.statuses.length && location == '') {
-            console.log('None of these have a location');
+          if (location != null){
+            console.log("This post at least has a location");
+            
+            if (location.name != undefined){
+              console.log('found a named location, lets go with it', location.name)
+              believe_location = location.name;
+              break;
+            } else {
+              console.log('this location doesen\'t have a name, move on to the next')
+            }
+
+          } else if (i == response.length-1 && location == null) {
+            console.log("None of these posts have locations")
+            $("selector").replaceWith("here")
           } else {
-            console.log('no location found... moving to the next instagram')
+            console.log('This post does not have a location at all. Move on to the next one')
           }
+
         }
 
-        $("h2").html(sorry_location);
+        $("#2").html(believe_location);
 
-        console.log(sorry_location);
+        
+        console.log(believe_location);
           
       });
+
+      //      $(document).ready(function(){
+      
+      // $.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/believe", function(response){
+
+      //   console.log(response);
+
+      //   var sorry_location;
+
+      //   for(i in response.statuses) {
+
+      //     var location = response.statuses[i].user.location;
+
+      //     if(location != '') {
+      //       console.log('found a location, lets go with it', location)
+      //       sorry_location = location;
+      //       break;
+      //     } else if(i == response.statuses.length && location == '') {
+      //       console.log('None of these have a location');
+      //     } else {
+      //       console.log('no location found... moving to the next instagram')
+      //     }
+      //   }
+
+      //   $("h2").html(sorry_location);
+
+      //   console.log(sorry_location);
+          
+      // });
       
       $.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/\"I_wouldn't_mind\"", function(response){
 
@@ -44,7 +83,7 @@
         var index = tempLC.indexOf('i wouldn\'t mind');
         var butI = butI.substring(index, butI.length);  
 
-        $("h4").append(butI);
+        $("#4").append(butI);
           
       });
     });
@@ -55,52 +94,32 @@
 
     <style>
 
-      h1 {
+      p {
         font-family: 'Courgette', cursive;
         font-size: 3em;
         color: black;
         text-align: center;
         margin: auto;
-        margin: 30%;
+        margin: 5% 10% 5% 10%;
       }
 
-      h2 {
-        font-family: 'Courgette', cursive;
-        font-size: 3em;
-        color: blue;
-        text-align: center;
-        margin: auto;
-        margin: -25% 10% 0% 10%;
-      }
-      h3 {
-        font-family: 'Courgette', cursive;
-        font-size: 3em;
-        color: black;
-        text-align: center;
-        margin: auto;
-        margin: 5% 10% 0% 10%;
-      }
-      h4 {
-        font-family: 'Courgette', cursive;
-        font-size: 3em;
-        color: red;
-        text-align: center;
-        margin: auto;
-        margin: 5% 10% 0% 10%;
+      p:first-child {
+        margin-top: 10%;
       }
 
       body {
         background-image: ;
+        background-color: pink;
       }
 
     </style>
 
   <body>
 
-    <h1>I can't believe I'm in</h1>
-    <h2></h2>
-    <h3>but</h3>
-    <h4></h4>
+    <p id="1">I can't believe I'm <selector>in</selector></p>
+    <p id="2"></p>
+    <p id="3">but</p>
+    <p id="4"></p>
 
   </body>
 
