@@ -97,7 +97,7 @@
       p {
         font-family: 'Courgette', cursive;
         font-size: 3em;
-        color: #CC0066;
+        color: #D91B5B;
         text-align: center;
         margin: auto;
         margin: 0% 10% 0% 10%;
@@ -109,8 +109,32 @@
       }
 
       body {
-        background-image: ;
-        background-color: pink;
+        animation-name: pulse;
+        animation-duration: 3s;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+        -webkit-animation-name: pulse;
+        -webkit-animation-duration: 3s;
+        -webkit-animation-direction: alternate;
+        -webkit-animation-iteration-count: infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          background-color: #ED8BB9;
+        }
+        100% {
+          background-color: #EB579F;
+        }
+      }
+
+      @-webkit-keyframes pulse {
+        0% {
+          background-color: #ED8BB9;
+        }
+        100% {
+          background-color: #EB579F;
+        }
       }
 
     </style>
